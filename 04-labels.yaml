@@ -4,7 +4,7 @@ metadata:
   name: labels
   labels:
     course: Devops
-    topic: k8's
+    topic: k8s
 spec:
   containers:
     - name: nginx
