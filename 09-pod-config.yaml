@@ -12,3 +12,9 @@ spec:
             configMapKeyRef:
               name: chandu
               key: course
+        - name: topic
+          valueFrom:
+            configMapKeyRef:
+              name: chandu
+              key: topic
+
