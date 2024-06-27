@@ -1,0 +1,14 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: annotations
+  labels:
+    course: Devops
+    topic: k8s
+  annotations:
+    course: k8's
+    duration: 10 hr's
+spec:
+  containers:
+    - name: nginx
+      image: nginx
