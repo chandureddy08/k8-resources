@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1 
+metadata:
+  name: nginx-np
+spec:
+  type: NodePort
+  selector:
+    name: frontend
+    project: expese
+    component: frontend
+    environment: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 32750
