@@ -32,6 +32,9 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
+  labels:
+    purpose: ebs-static
+    project: expense
   name: nginx-static
 spec:
   containers:
@@ -44,3 +47,19 @@ spec:
   - name: persistent-storage
     PersistentVolumeClaim:
     claimName: ebs-static
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-lb
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: ebs-static
+    project: expense
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
