@@ -1,0 +1,30 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: nginx
+  labels:
+    name: frontend
+    project: expese
+    component: frontend
+    environment: dev
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+---
+
+kind: Service
+apiVersion: v1 
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    name: frontend
+    project: expese
+    component: frontend
+    environment: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
