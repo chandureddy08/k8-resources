@@ -10,56 +10,56 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4
-    volumeHandle: ebs-vol-id
+    volumeHandle: vol-0bed01fe177eaa28d
 
 ---
 
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: ebs-static
-spec:
-  storageClassName: ""
-  volumeName: ebs-static
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: ebs-static
+# spec:
+#   storageClassName: ""
+#   volumeName: ebs-static
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 20Gi
 
----
+# ---
 
-kind: Pod
-apiVersion: v1
-metadata:
-  labels:
-    purpose: ebs-static
-    project: expense
-  name: nginx-static
-spec:
-  containers:
-  - name: nginx
-    image: nginx
-    volumeMounts:
-    - name: persistent-storage
-      mountPath: /usr/share/nginx/html
-  volumes:
-  - name: persistent-storage
-    PersistentVolumeClaim:
-    claimName: ebs-static
+# kind: Pod
+# apiVersion: v1
+# metadata:
+#   labels:
+#     purpose: ebs-static
+#     project: expense
+#   name: nginx-static
+# spec:
+#   containers:
+#   - name: nginx
+#     image: nginx
+#     volumeMounts:
+#     - name: persistent-storage
+#       mountPath: /usr/share/nginx/html
+#   volumes:
+#   - name: persistent-storage
+#     PersistentVolumeClaim:
+#     claimName: ebs-static
 
----
+# ---
 
-kind: Service
-apiVersion: v1
-metadata:
-  name: nginx-lb
-spec:
-  type: LoadBalancer
-  selector:
-    purpose: ebs-static
-    project: expense
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
+# kind: Service
+# apiVersion: v1
+# metadata:
+#   name: nginx-lb
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     purpose: ebs-static
+#     project: expense
+#   ports:
+#   - protocol: TCP
+#     port: 80
+#     targetPort: 80
