@@ -16,7 +16,6 @@ data:
 kind: Pod
 apiVersion: v1
 metadata:
-  namespace: metallb-system
   name: nginx
   labels:
     name: frontend
